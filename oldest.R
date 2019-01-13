@@ -1,26 +1,35 @@
 library(xlsx)
 library(ggplot2)
+
 data <- read.xlsx("data/oldest_working.xlsx", sheetName = "Sheet1")
 
 
 plot <- ggplot(data, aes(x = reorder(Name, X.), Age)) +
-  geom_point(size = 3, color = "#be94be") +
-  #the below geom_text looks terrible. May try to fix later on, so leaving code for now.
-  #geom_text(aes(label=Age), size = 2, hjust=.45, vjust=-3, alpha = .8, color = "#64a164") +
-  geom_segment( aes(x=Name, xend=Name, y=108, yend=Age), color = "#be94be") +
+  geom_point(size = 1.7, color = "Gray") +
+  #geom_text for age at end of segment.
+  geom_text(aes(label=paste(format(Age, digits=2, nsmall=2),"years"),vjust = .17, hjust = -.2), size = 2, alpha = 1, color = "#151515") +
+  #geom_text to add a row for date of death next to the name. I can't figure out how to get the NA to not be centered.
+  geom_text(aes(label=paste("d.", format(Died, digits=2, nsmall=2)),vjust = .6, hjust = .6, y=107), size = 2, alpha = 1, color = "#151515") +
+  geom_segment( aes(x=Name, xend=Name, y=108, yend=Age), color = "Gray", size = 1) +
   theme_light() +
-  ylim(108,123) +
-  labs(title = "How old were the oldest people in the world at time of death?", 
-       x = "Name", 
-       y = "Age") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1, size = 8, color = "#be94be")) +
-  theme(panel.grid.major.x = element_blank(),
+  ylim(107,123) +
+  labs(title = "World's Oldest Person Titleholders Since 1955", 
+       x = "Titleholder", 
+       y = "Age of Death",
+       caption = "Source: Gerontology Research Group - http://www.grg.org/Adams/C.HTM") +
+    theme(axis.text.x = element_text(angle = 0, hjust = 1, color = "#151515"),
+        axis.text.y = element_text(angle = 0, hjust = 1, size = 8, color = "#151515"),
+        panel.grid.major.x = element_blank(),
         panel.border = element_blank(),
         axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
         panel.grid = element_blank(),
-        legend.position="none",
-        #axis.text.x = element_blank(), #leaving this here temporarily.
-        plot.margin = margin(1,1,1,1, "cm"))
+        plot.title = element_text(color = "#151515"),
+        axis.title.x = element_text(color = "#151515"),
+        axis.title.y = element_text(color = "#151515"),
+        plot.caption=element_text(size = 7, color = "Light Gray"),
+        plot.margin = margin(1,1,1,1, "cm")) +
+  coord_flip()
           
 
 plot
