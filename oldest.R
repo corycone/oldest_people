@@ -3,14 +3,14 @@ library(ggplot2)
 
 data <- read.xlsx("data/Oldest_Person_Titleholders.xlsx", sheetName = "Sheet1")
 
-
+#71.5 baseline
 plot <- ggplot(data, aes(x = reorder(Name, -X.), Age)) +
   geom_point(aes(color = Sex), size = 1.8) +
   geom_text(aes(label=paste(format(Age),"years"),vjust = .35, hjust = -.2), size = 2, alpha = 1, color = "#151515") +
-  geom_text(aes(label=ifelse(Died == "N/A", "still living ", paste("died:", format(Died))), vjust = .45, hjust = .5, y=107), size = 2, alpha = 1, color = "#151515") +
-  geom_segment( aes(x=Name, xend=Name, y=108, yend=Age, color = Sex), size = 1) +
+  geom_text(aes(label=ifelse(Died == "N/A", "still living ", paste("died:", format(Died))), vjust = .45, hjust = .6, y=69), size = 2, alpha = 1, color = "#151515") +
+  geom_segment( aes(x=Name, xend=Name, y=71.5, yend=Age, color = Sex), size = 1) +
   theme_light() +
-  ylim(107,123) +
+  ylim(69,123) +
   labs(title = "World's Oldest Person Titleholders Since 1955", 
        x = "Titleholder", 
        y = "Age of Death",
@@ -29,7 +29,7 @@ plot <- ggplot(data, aes(x = reorder(Name, -X.), Age)) +
         plot.margin = margin(1,1,1,1, "cm")) +
   #scale_colour_brewer(palette = "Blues") +
   coord_flip()
-          
+
 
 plot
 
