@@ -5,7 +5,7 @@ data <- read.xlsx("data/Oldest_Person_Titleholders.xlsx", sheetName = "Sheet1")
 
 
 plot <- ggplot(data, aes(x = reorder(Name, X.), Age)) +
-  geom_point(aes(colour = Sex), size = 1.8) +
+  geom_point(aes(color = Sex), size = 1.8) +
   scale_colour_brewer(palette = "Set2") +
   #geom_text for age at end of segment.
   geom_text(aes(label=paste(format(Age),"years"),vjust = .25, hjust = -.2), size = 2, alpha = 1, color = "#151515") +
