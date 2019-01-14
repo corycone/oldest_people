@@ -19,7 +19,7 @@ plot <- ggplot(data, aes(x = reorder(Name, X.), Age)) +
        x = "Titleholder", 
        y = "Age of Death",
        caption = "Source: Gerontology Research Group - http://www.grg.org/Adams/C.HTM") +
-    theme(axis.text.x = element_text(color = "#151515", angle = 0, hjust = 1, size = 7),
+  theme(axis.text.x = element_text(color = "#151515", angle = 0, hjust = 1, size = 7),
         axis.text.y = element_text(angle = 0, hjust = 1, size = 7, color = "#151515"),
         panel.grid.major.x = element_blank(),
         panel.border = element_blank(),
@@ -32,7 +32,7 @@ plot <- ggplot(data, aes(x = reorder(Name, X.), Age)) +
         plot.caption=element_text(size = 7, color = "#151515"),
         legend.position="right",
         plot.margin = margin(1,1,1,1, "cm")) +
-    coord_flip()
+  coord_flip()
           
 
 plot
